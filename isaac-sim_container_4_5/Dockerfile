@@ -13,11 +13,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     gpg \
     git \
     vim \
-    # xvfb \ # Xvfb 제거
-    # x11vnc \ # X11VNC 제거
-    # x11-utils \ # X11 유틸리티 제거 (필요 시 주석 해제)
-    # xterm \ # Xterm 제거 (필요 시 주석 해제)
+    xvfb \
+    x11vnc \
+    x11-utils \
     mesa-utils \
+    libgl1-mesa-glx \
+    libegl1-mesa \
+    libglu1-mesa \
     libgl1-mesa-dri \
     libglx-mesa0 \
     curl \

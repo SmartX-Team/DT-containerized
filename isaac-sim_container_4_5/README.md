@@ -67,6 +67,38 @@ sudo docker run --name isaac-sim \
 isaac-sim:4.5
 ```
 
+### Inter-Container Communication (with Our ROS2 containers)
+To enable communication with other ROS2-based containers on the same host machine, you need to add specific flags to your docker run command. These flags facilitate the underlying ROS2 middleware communication protocols.
+
+https://github.com/SmartX-Team/Omniverse/tree/main/ROS2/ros2-container
+```bash
+sudo docker run --name isaac-sim \
+--detach \
+--restart unless-stopped \
+--runtime=nvidia --gpus all \
+--network=host \
+--ipc=host \
+--privileged \
+-e "ACCEPT_EULA=Y" \
+-e "PRIVACY_CONSENT=Y" \
+-e "OMNI_SERVER=omniverse://YOUR_NUCLEUS_SERVER/NVIDIA/Assets/Isaac/4.5" \
+-e "OMNI_USER=your_username" \
+-e "OMNI_PASS=your_password" \
+-e "OMNI_KIT_ALLOW_ROOT=1" \
+-v ~/docker/isaac-sim/cache/kit:/isaac-sim/kit/cache:rw \
+-v ~/docker/isaac-sim/cache/ov:/root/.cache/ov:rw \
+-v ~/docker/isaac-sim/cache/pip:/root/.cache/pip:rw \
+-v ~/docker/isaac-sim/cache/glcache:/root/.cache/nvidia/GLCache:rw \
+-v ~/docker/isaac-sim/cache/computecache:/root/.nv/ComputeCache:rw \
+-v ~/docker/isaac-sim/logs:/root/.nvidia-omniverse/logs:rw \
+-v ~/docker/isaac-sim/data:/root/.local/share/ov/data:rw \
+-v ~/docker/isaac-sim/documents:/root/Documents:rw \
+ttyy441/issac-sim:0.4.5.2
+```
+##### --ipc=host: This flag is often required for efficient inter-process communication used by ROS2 middleware. Depending on your setup, you might need to change the value (e.g., --ipc=container:<name_or_id>) to share the IPC namespace with a specific container.
+
+##### --privileged: This gives the container extended privileges on the host machine. Add this flag only if you need to access host devices, such as cameras, LiDARs, or other sensors, from within the container.
+
 ### Environment Variables
 ```bash
 # GUI mode
