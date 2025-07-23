@@ -164,32 +164,6 @@ cd /opt/IsaacLab
 ./isaaclab.sh -p source/standalone/environments/list_envs.py
 ```
 
-### Learning Framework Examples
-```bash
-# SKRL training
-./isaaclab.sh -p scripts/reinforcement_learning/skrl/train.py --task Isaac-Cartpole-v0 --headless
-
-# RSL-RL training
-./isaaclab.sh -p scripts/reinforcement_learning/rsl_rl/train.py --task Isaac-Velocity-Rough-Anymal-C-v0 --headless
-
-# Stable Baselines3 training
-./isaaclab.sh -p source/standalone/workflows/sb3/train.py --task Isaac-Cartpole-v0 --headless --device cpu
-```
-
-## Nucleus Server Connection
-
-### Environment Variables
-```bash
--e "OMNI_SERVER=omniverse://YOUR_SERVER_IP/PATH"
--e "OMNI_USER=your_username"
--e "OMNI_PASS=your_password"
-```
-
-### Connection Verification
-```bash
-# Check connection status in logs
-docker logs isaac-sim-lab | grep -i "omni\|nucleus"
-```
 
 ## 🛠️ Development & Debugging
 
@@ -222,40 +196,6 @@ docker exec isaac-sim-lab /isaac-sim/entrypoint.sh -e REREGISTER_EXTENSIONS=true
 # List extensions
 docker exec isaac-sim-lab ls -la /isaac-sim/exts/
 docker exec isaac-sim-lab ls -la /opt/SmartX_Omniverse_Extensions/
-```
-
-## Troubleshooting
-
-### Isaac Lab Specific Issues
-```bash
-# Check Isaac Lab installation
-docker exec isaac-sim-lab /opt/IsaacLab/isaaclab.sh --help
-
-# Verify Python environment
-docker exec isaac-sim-lab /isaac-sim/python.sh --version
-
-# Test Isaac Lab basic functionality
-docker exec isaac-sim-lab /opt/IsaacLab/isaaclab.sh -p scripts/tutorials/00_sim/create_empty.py --headless
-```
-
-### GPU Recognition Issues
-```bash
-# Check GPU status and RT core availability
-nvidia-smi
-nvidia-smi --query-gpu=name,driver_version --format=csv
-
-# Test with specific GPU
-docker run --rm --gpus '"device=1"' nvidia/cuda:11.8-base nvidia-smi
-```
-
-### Memory Issues for Isaac Lab
-```bash
-# Increase shared memory (Isaac Lab requires more memory)
---shm-size=4g
-
-# Monitor memory usage
-docker exec isaac-sim-lab free -h
-docker exec isaac-sim-lab nvidia-smi
 ```
 
 ### ROS2 Workspace Issues
