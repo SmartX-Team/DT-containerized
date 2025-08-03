@@ -114,7 +114,7 @@ pull_isaac_image() {
     
     # 이미지 정보 확인
     log_info "다운로드된 이미지 정보:"
-    sudo podman images | grep issac-sim
+    sudo podman images | grep isaac-sim
 }
 
 # 캐시 디렉토리 생성
@@ -733,7 +733,7 @@ check_existing_installation() {
     fi
 }
 
-# 편의 스크립트 생성 (!현재 오류 수정 안함 -> 누군가 해주삼)
+# 편의 스크립트 생성 (!현재 환경 변수들 하드코딩되어 있는거 수정 안함 -> 누군가 해주삼)
 create_convenience_scripts() {
     log_info "편의 스크립트 생성 중..."
     
@@ -751,7 +751,7 @@ echo "Isaac Sim GUI 실행 중..."
 
 # 변수 설정
 CACHE_BASE="$HOME/podman/isaac-sim"
-IMAGE_NAME="docker.io/ttyy441/issac-sim:0.4.5.1"
+IMAGE_NAME="$IMAGE_NAME"
 USER_ID=$USER_ID
 GROUP_ID=$GROUP_ID
 
