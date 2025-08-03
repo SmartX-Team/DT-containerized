@@ -37,7 +37,7 @@ log_error() {
 }
 
 # 설정 변수
-IMAGE_NAME="docker.io/ttyy441/issac-sim:0.4.5.1"
+IMAGE_NAME="docker.io/ttyy441/isaac-sim:0.4.5.5"
 CONTAINER_NAME="isaac-sim"
 CACHE_BASE="$HOME/podman/isaac-sim"
 
@@ -733,7 +733,7 @@ check_existing_installation() {
     fi
 }
 
-# 편의 스크립트 생성
+# 편의 스크립트 생성 (!현재 오류 수정 안함 -> 누군가 해주삼)
 create_convenience_scripts() {
     log_info "편의 스크립트 생성 중..."
     
