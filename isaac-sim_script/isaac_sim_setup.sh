@@ -56,6 +56,9 @@ OMNI_SERVER="${OMNI_SERVER:-$DEFAULT_OMNI_SERVER}"
 OMNI_USER="${OMNI_USER:-$DEFAULT_OMNI_USER}"
 OMNI_PASS="${OMNI_PASS:-$DEFAULT_OMNI_PASS}"
 
+# 디폴트로 열리는 USD STAGE 주소 지정
+DEFAULT_OMNI_SERVER="omniverse://10.38.38.40/Projects/middleschool/demonstration/world_nowindow.usd"
+
 # 조이스틱, rviz2 등 편의성 기능 모와둔
 ROS2_IMAGE_NAME="docker.io/ttyy441/ros2-container:0.5.0"
 ROS2_CONTAINER_NAME="ros2-backend"
@@ -511,6 +514,7 @@ run_gui_container() {
         -e "OMNI_PASS=$OMNI_PASS" \
         -e "OMNI_KIT_ALLOW_ROOT=1" \
         -e "NVIDIA_DRIVER_CAPABILITIES=all" \
+        -e "STARTUP_USD_STAGE=$DEFAULT_OMNI_SERVER" \
         -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
         -v $HOME/Documents:$HOME/Documents:rw \
         -v $CACHE_BASE/cache/kit:/isaac-sim/kit/cache:rw \
@@ -526,13 +530,7 @@ run_gui_container() {
         -v $CACHE_BASE/isaac-cache-ov:/isaac-sim/.cache/ov:rw \
         -v $CACHE_BASE/isaac-local-share:/isaac-sim/.local/share:rw \
         -v $CACHE_BASE/isaac-ros:/isaac-sim/.ros:rw \
-        $IMAGE_NAME \
-        bash -c "ulimit -n 8192 && cd /isaac-sim && ./isaac-sim.sh"
-    
-    # GUI 모드에서는 컨테이너가 포그라운드에서 실행되므로
-    # 종료 후 정리 메시지 표시
-    echo ""
-    log_info "Isaac Sim GUI가 종료되었습니다."
+        $IMAGE_NAME
     
 }
 
