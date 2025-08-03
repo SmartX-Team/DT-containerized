@@ -37,7 +37,7 @@ log_error() {
 }
 
 # 설정 변수
-IMAGE_NAME="docker.io/ttyy441/isaac-sim:0.4.5.5"
+IMAGE_NAME="docker.io/ttyy441/isaac-sim-visualization:0.4.5"
 CONTAINER_NAME="isaac-sim"
 CACHE_BASE="$HOME/podman/isaac-sim"
 
