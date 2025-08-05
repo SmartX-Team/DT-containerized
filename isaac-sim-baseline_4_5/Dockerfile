@@ -88,7 +88,9 @@ RUN pip3 install --no-cache-dir \
     stable-baselines3 \
     tensorboard \
     Pillow \
-    pyyaml
+    pyyaml \
+    tqdm \
+    rich
 
 # 추가 라이브러리들 (분리 설치로 캐시 효율성 향상)
 RUN pip3 install --no-cache-dir \
