@@ -5,15 +5,9 @@
 
 ---
 
+
 ## 🔔 Pre‑built image on Docker Hub
 
-A fully configured image for the most recent, production‑tested stack is already pushed to Docker Hub:
-
-```bash
-docker pull ttyy441/issac-sim:0.4.5.1
-# (If the repository is private) 
-docker login -u <your‑docker‑ID>
-```
 
 A fully configured image for the most recent, production‑tested stack is already pushed to Docker Hub. We regularly push incremental improvements, so please check the Tags tab on Docker Hub for the latest version before pulling.
 
@@ -27,7 +21,7 @@ A fully configured image for the most recent, production‑tested stack is alrea
 
 ---
 
-## 📦 Why does this repo exist?
+## Why does this repo exist?
 
 Keeping Omniverse apps reproducible is a cumbersome task: large installers, GPU driver quirks, and Nucleus auth that breaks CI/CD. We needed a container with key features auto-configured for a cloud-native workflow, and that's why this repository exists.  Here we lock every dependency inside a Docker image **per version** and commit the exact build context under
 `<app>_container_<major>_<minor>` folders. Git history + Docker tag = perfect roll‑back.
@@ -36,14 +30,26 @@ Key features of the **Isaac Sim** image:
 
 * **ROS 2 Humble** pre‑installed with `ros2_isaac_bridge` enabled
 * **Nucleus auto‑login** via `nucleus-login.py` (reads `OMNI_SERVER`, `OMNI_USER`, `OMNI_PASS` env vars)
+* **[NetAI] tagged extensions** automatically installed and configured
 * Headless & GUI launch support (VNC, X11, PulseAudio)
-* CUDA‑11/12 compatible; built on `nvidia/cuda:12.*-base`
 
 Future apps—Omniverse Code, USD Composer, OV XR, etc.—will live in sibling folders that follow the same naming convention.
 
 ---
 
-## 🗂️ Repository layout
+## Container Variants & Use Cases
+
+Different variants of the Isaac Sim container are available to match specific workflow requirements:
+
+| Variant | Target Use Case | Key Differences |
+|---------|----------------|----------------|
+| `isaac-sim_container_4_5` | Core Base Image | Isaac Sim 4.5 + ROS 2 bridge |
+| `isaac-sim-baseline_4_5` | Core Base + RL Environment | Includes baseline development environment for autonomous driving training |
+| `isaac_sim_script` | Environment Setup Scripts | Collection of convenience scripts for Isaac Sim 4.5 environment configuration |
+| `isaac-sim_visualization` | Lab Display Wall Setup | Docker Compose files and demo configurations for presentation purposes, similar to `isaac-sim_container_4_5` |
+
+
+## Isaac-sim Repository layout
 
 ```
 DT-containerized/
@@ -60,6 +66,7 @@ Naming rule: **`<application>_container_<major>_<minor>`**
 Examples: `code_container_2025_1`, `usd-composer_container_2024_3`.
 
 ---
+
 
 ## 🚀 Quick start (using the pre‑built image)
 
