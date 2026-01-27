@@ -1,0 +1,129 @@
+services:
+  isaac-sim1:
+    image: wonjuneshin/isaac-sim-visualization:0.5.0
+    container_name: isaac-sim1
+    restart: unless-stopped
+    #runtime: nvidia
+    network_mode: host
+    ipc: host
+    devices:
+      - /dev/dri
+      #- /dev/nvidia0
+      #- /dev/nvidiactl
+      #- /dev/nvidia-uvm
+    environment:
+      - DISPLAY=${DISPLAY}
+      - ACCEPT_EULA=Y
+      - PRIVACY_CONSENT=Y
+      - OMNI_SERVER=omniverse://YOUR_NUCLEUS_SERVER/
+      - OMNI_USER=user
+      - OMNI_PASS=password
+      - OMNI_KIT_ALLOW_ROOT=1
+      - STARTUP_USD_STAGE=omniverse://YOUR_NUCLEUS_SERVER/Projects/Display/Dream-AI_Plus_Twin/Dream-AI_Plus_Twin.usd
+      - STARTUP_CAMERA_PATH=/World/Display1
+      - XAUTHORITY=${XAUTHORITY}
+      - NVIDIA_VISIBLE_DEVICES=0
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["0"]
+              capabilities: [gpu]     
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${XAUTHORITY}:${XAUTHORITY}:rw
+      - ~/docker/isaac-sim/cache1/kit:/isaac-sim/kit/cache:rw
+      - ~/docker/isaac-sim/cache1/ov:/root/.cache/ov:rw
+      - ~/docker/isaac-sim/cache1/pip:/root/.cache/pip:rw
+      - ~/docker/isaac-sim/cache1/glcache:/root/.cache/nvidia/GLCache:rw
+      - ~/docker/isaac-sim/cache1/computecache:/root/.nv/ComputeCache:rw
+      - ~/docker/isaac-sim/logs1:/root/.nvidia-omniverse/logs:rw
+      - ~/docker/isaac-sim/data1:/root/.local/share/ov/data:rw
+
+  isaac-sim2:
+    image: wonjuneshin/isaac-sim-visualization:0.5.0
+    container_name: isaac-sim2
+    restart: unless-stopped
+    #runtime: nvidia
+    network_mode: host
+    ipc: host
+    devices:
+      - /dev/dri
+      #- /dev/nvidia1
+      #- /dev/nvidiactl
+      #- /dev/nvidia-uvm
+    environment:
+      - DISPLAY=${DISPLAY}
+      - ACCEPT_EULA=Y
+      - PRIVACY_CONSENT=Y
+      - OMNI_SERVER=omniverse://YOUR_NUCLEUS_SERVER/
+      - OMNI_USER=user
+      - OMNI_PASS=password
+      - OMNI_KIT_ALLOW_ROOT=1
+      - STARTUP_USD_STAGE=omniverse://YOUR_NUCLEUS_SERVER/Projects/Display/Dream-AI_Plus_Twin/Plus.usd
+      - STARTUP_CAMERA_PATH=/World/Display2
+      - XAUTHORITY=${XAUTHORITY}
+      - NVIDIA_VISIBLE_DEVICES=1
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["1"]
+              capabilities: [gpu]         
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${XAUTHORITY}:${XAUTHORITY}:rw
+      - ~/docker/isaac-sim/cache2/kit:/isaac-sim/kit/cache:rw
+      - ~/docker/isaac-sim/cache2/ov:/root/.cache/ov:rw
+      - ~/docker/isaac-sim/cache2/pip:/root/.cache/pip:rw
+      - ~/docker/isaac-sim/cache2/glcache:/root/.cache/nvidia/GLCache:rw
+      - ~/docker/isaac-sim/cache2/computecache:/root/.nv/ComputeCache:rw
+      - ~/docker/isaac-sim/logs2:/root/.nvidia-omniverse/logs:rw
+      - ~/docker/isaac-sim/data2:/root/.local/share/ov/data:rw
+
+  isaac-sim3:
+      image: wonjuneshin/isaac-sim-visualization:0.5.0
+      container_name: isaac-sim3
+      restart: unless-stopped
+      #runtime: nvidia
+      network_mode: host
+      ipc: host
+      devices:
+        - /dev/dri
+        #- /dev/nvidia2
+        #- /dev/nvidiactl
+        #- /dev/nvidia-uvm
+      environment:
+        - DISPLAY=${DISPLAY}
+        - ACCEPT_EULA=Y
+        - PRIVACY_CONSENT=Y
+        - OMNI_SERVER=omniverse://YOUR_NUCLEUS_SERVER/
+        - OMNI_USER=user
+        - OMNI_PASS=password
+        - OMNI_KIT_ALLOW_ROOT=1
+        - STARTUP_USD_STAGE=omniverse://YOUR_NUCLEUS_SERVER/Projects/Display/Dream-AI_Plus_Twin/Campus.usd
+        - STARTUP_CAMERA_PATH=/World/Display3
+        - XAUTHORITY=${XAUTHORITY}
+        - NVIDIA_VISIBLE_DEVICES=2
+        - NVIDIA_DRIVER_CAPABILITIES=all
+      deploy:
+        resources:
+          reservations:
+            devices:
+              - driver: nvidia
+                device_ids: ["2"]
+                capabilities: [gpu]     
+      volumes:
+        - /tmp/.X11-unix:/tmp/.X11-unix:rw
+        - ${XAUTHORITY}:${XAUTHORITY}:rw
+        - ~/docker/isaac-sim/cache3/kit:/isaac-sim/kit/cache:rw
+        - ~/docker/isaac-sim/cache3/ov:/root/.cache/ov:rw
+        - ~/docker/isaac-sim/cache3/pip:/root/.cache/pip:rw
+        - ~/docker/isaac-sim/cache3/glcache:/root/.cache/nvidia/GLCache:rw
+        - ~/docker/isaac-sim/cache3/computecache:/root/.nv/ComputeCache:rw
+        - ~/docker/isaac-sim/logs3:/root/.nvidia-omniverse/logs:rw
+        - ~/docker/isaac-sim/data3:/root/.local/share/ov/data:rw

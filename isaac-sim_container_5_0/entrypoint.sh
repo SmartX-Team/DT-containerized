@@ -204,7 +204,7 @@ password = "${OMNI_PASS}"
 EOF
 
 # Isaac Sim 설정에 assets root 추가 ( 다음 스크립트 버전에서 환경 변수는 위쪽으로 명시할 것)
-ISAAC_VERSION="4.5"
+ISAAC_VERSION="5.0"
 if [ -n "${OMNI_SERVER}" ]; then
     ASSET_ROOT="${OMNI_SERVER}/NVIDIA/Assets/Isaac/${ISAAC_VERSION}"
     EXTRA_ARGS+=" --/persistent/isaac/asset_root/default=${ASSET_ROOT}"
