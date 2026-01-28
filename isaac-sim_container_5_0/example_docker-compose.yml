@@ -15,6 +15,7 @@ services:
       - DISPLAY=${DISPLAY}
       - ACCEPT_EULA=Y
       - PRIVACY_CONSENT=Y
+      - START_GUI=true
       - OMNI_SERVER=omniverse://YOUR_NUCLEUS_SERVER/
       - OMNI_USER=user
       - OMNI_PASS=password
@@ -58,6 +59,7 @@ services:
       - DISPLAY=${DISPLAY}
       - ACCEPT_EULA=Y
       - PRIVACY_CONSENT=Y
+      - START_GUI=true
       - OMNI_SERVER=omniverse://YOUR_NUCLEUS_SERVER/
       - OMNI_USER=user
       - OMNI_PASS=password
@@ -101,6 +103,7 @@ services:
         - DISPLAY=${DISPLAY}
         - ACCEPT_EULA=Y
         - PRIVACY_CONSENT=Y
+        - START_GUI=true
         - OMNI_SERVER=omniverse://YOUR_NUCLEUS_SERVER/
         - OMNI_USER=user
         - OMNI_PASS=password

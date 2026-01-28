@@ -17,10 +17,21 @@ echo "=== Isaac Sim Container Starting ==="
 
 # --- 1. Start virtual display (Xvfb) with enhanced stability ---
 # Remove any leftover X-lock files from abnormal termination to prevent conflicts
-rm -f /tmp/.X1-lock
-echo "Starting Xvfb on display :1"
-Xvfb :1 -screen 0 1920x1080x24 &
-export DISPLAY=:1
+if [ "${START_GUI}" != "true" ]; then
+    # [Headless 모드] 가상 화면이 필요할 때만 실행
+    
+    # 여기서 청소를 먼저 하고!
+    rm -f /tmp/.X1-lock
+    
+    # 가상 화면(Xvfb)을 켭니다
+    echo "Starting Xvfb on display :1"
+    Xvfb :1 -screen 0 1920x1080x24 &
+    export DISPLAY=:1
+else
+    # [GUI 모드] 청소도, 가상 화면도 필요 없음
+    echo "=== GUI MODE DETECTED ==="
+    echo "Skipping Xvfb setup. Using Host Display: $DISPLAY"
+fi
 
 # --- 2. Update SmartX Omniverse Extensions ---
 echo "=== Updating SmartX Omniverse Extensions ==="
