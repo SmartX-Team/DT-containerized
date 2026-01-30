@@ -1,6 +1,6 @@
 # Isaac Sim 5.0 Docker Container
 
-Digital Twin display container based on `Isaac Sim 4.5.0 Docker Container`.
+Digital Twin display container based on `DT-containerized/Isaac Sim 4.5.0 Docker Container`.
 
 # Added Feature
 
@@ -88,5 +88,5 @@ isaac-sim:5.0
 ```
 
 ### Multi-Run (Docker Compose)
-
+**Current Method for Managing Hallway Displays** (2026-01-30)
 check `example_docker-compose.yml` file
