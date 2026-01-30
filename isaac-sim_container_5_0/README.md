@@ -88,5 +88,5 @@ isaac-sim:5.0
 ```
 
 ### Multi-Run (Docker Compose)
-**Current Method for Managing Hallway Displays** (2026-01-30)
-check `example_docker-compose.yml` file
+**Current Method for Managing Hallway Displays** (2026-01-30)  
+Please check `example_docker-compose.yml` file
